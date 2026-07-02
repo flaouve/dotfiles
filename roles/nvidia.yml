@@ -6,21 +6,39 @@
   failed_when: false
   changed_when: false
 
-- name: Install NVIDIA drivers and container tools on Fedora
+- name: Enable RPM Fusion Nonfree Tainted repository
+  dnf:
+    name: rpmfusion-nonfree-release-tainted
+    state: present
+  become: true
+  when:
+    - ansible_facts['distribution'] == "Fedora"
+    - nvidia_check.rc == 0
+
+- name: Refresh DNF cache after enabling tainted repo
+  ansible.builtin.shell: "dnf clean expire-cache && dnf makecache"
+  become: true
+  when:
+    - ansible_facts['distribution'] == "Fedora"
+    - nvidia_check.rc == 0
+
+
+- name: Install NVIDIA open kernel drivers and container tools on Fedora
   dnf:
     name:
       - akmod-nvidia-open
+      - xorg-x11-drv-nvidia
       - xorg-x11-drv-nvidia-cuda
       - vulkan
       - xorg-x11-drv-nvidia-cuda-libs
       - libva-nvidia-driver
       - libva-utils
       - vdpauinfo
-      - nvidia-container-toolkit-1.19.1-1
-      - nvidia-container-toolkit-base-1.19.1-1
-      - libnvidia-container-tools-1.19.1-1
-      - libnvidia-container1-1.19.1-1
-    state: present
+      - nvidia-container-toolkit
+      - nvidia-container-toolkit-base
+      - libnvidia-container-tools
+      - libnvidia-container1
+    state: latest
   any_errors_fatal: true
   become: true
   when:
