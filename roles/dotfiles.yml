@@ -1,6 +1,6 @@
 ---
 
-- name: Copy system configuration files
+- name: Copy system configuration files {Desktop}
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -19,6 +19,22 @@
     - inventory_hostname in groups['Desktop']
     - ansible_facts['distribution'] == "Fedora"
     - ansible_facts['hostname'] == "cutie"
+
+- name: Copy system configuration files {Servers}
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "0644"
+
+  become: true
+  with_items:
+    - { src: "system/fail2ban/jail.local", dest: "/etc/fail2ban/jail.local" }
+  when:
+    - inventory_hostname in groups['Servers']
+    - ansible_facts['hostname'] == "violet-1"
+
 
 - name: Ensure target config directories exist
   ansible.builtin.file:

@@ -81,6 +81,7 @@
       - cockpit-networkmanager
       - cockpit-packagekit
       - cockpit-storaged
+      - fail2ban
 
     state: present
 

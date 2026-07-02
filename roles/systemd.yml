@@ -25,3 +25,13 @@
     - ansible_facts['distribution'] == "Fedora"
     - ansible_facts['hostname'] == "violet-1"
   become: true
+
+- name: Enable and start the fail2ban service
+  ansible.builtin.systemd:
+    name: fail2ban
+    state: started
+    enabled: yes
+  become: true
+  when:
+    - inventory_hostname in groups['Servers']
+    - ansible_facts['hostname'] == "violet-1"
