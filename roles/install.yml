@@ -47,13 +47,14 @@
   any_errors_fatal: true
   when:
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "cutie"
+    - inventory_hostname in groups['Desktop']
   become: true
 
 - name: install rust lang~ for cutie (Desktop)
   ansible.builtin.command: "rustup-init --profile default --default-toolchain stable --default-host x86_64-unknown-linux-gnu -y"
   when:
-    - ansible_facts['hostname'] == "cutie"
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['distribution'] == "Fedora"
 
 - name: install for violet-1 (server{fedora})
   dnf:
@@ -88,5 +89,5 @@
   any_errors_fatal: true
   when:
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "violet-1"
+    - inventory_hostname in groups['Servers']
   become: true

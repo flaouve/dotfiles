@@ -13,7 +13,7 @@
     state: started
   when:
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "violet-1"
+    - inventory_hostname in groups['Servers']
   become: true
 
 - name: Enable and start the cockpit socket
@@ -23,7 +23,7 @@
     state: started
   when:
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "violet-1"
+    - inventory_hostname in groups['Servers']
   become: true
 
 - name: Enable and start the fail2ban service
@@ -34,4 +34,3 @@
   become: true
   when:
     - inventory_hostname in groups['Servers']
-    - ansible_facts['hostname'] == "violet-1"

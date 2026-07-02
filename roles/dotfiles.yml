@@ -18,7 +18,6 @@
   when:
     - inventory_hostname in groups['Desktop']
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "cutie"
 
 - name: Copy system configuration files {Servers}
   ansible.builtin.copy:
@@ -41,6 +40,7 @@
     path: "{{ ansible_facts['user_dir'] }}/.config/helix"
     state: directory
     mode: "0755"
+  when: ansible_facts['distribution'] == "Fedora"
 
 - name: Copy user home dotfiles
   ansible.builtin.copy:
@@ -53,6 +53,7 @@
     - { src: "home/vim/.vimrc", dest: ".vimrc" }
     - { src: "home/git/.gitconfig", dest: ".gitconfig" }
     - { src: "home/helix/config.toml", dest: ".config/helix/config.toml" }
+  when: ansible_facts['distribution'] == "Fedora"
 
 - name: Settings the background for gnome
   ansible.builtin.command: "{{ item }}"
@@ -65,18 +66,15 @@
     - inventory_hostname in groups['Desktop']
     - ansible_facts['env']['XDG_CURRENT_DESKTOP'] == "GNOME"
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "cutie"
 
 - name: Settings the tailscale for violet-1{Server}
   ansible.builtin.command: "tailscale up --auth-key={{ violet_one_tailscale_key }} --ssh --advertise-exit-node"
   become: true
   when:
-    - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "violet-1"
+    - inventory_hostname in groups['Servers']
 
 - name: Settings the tailscale for cutie{Desktop}
   ansible.builtin.command: "tailscale up --auth-key={{ cutie_tailscale_key }} --advertise-exit-node --operator={{ ansible_facts['user_id'] }}"
   become: true
   when:
-    - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "cutie"
+    - inventory_hostname in groups['Desktop']

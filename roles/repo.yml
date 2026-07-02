@@ -56,7 +56,7 @@
   become: true
   when: 
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "cutie"
+    - inventory_hostname in groups['Desktop']
   
 - name: Add VS Code RPM repository on Fedora
   ansible.builtin.yum_repository:

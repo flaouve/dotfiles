@@ -19,4 +19,4 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   become: false
   when:
-    - ansible_facts['hostname'] == "cutie"
+    - inventory_hostname in groups['Desktop']

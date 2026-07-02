@@ -34,5 +34,5 @@
   any_errors_fatal: true
   when:
     - ansible_facts['distribution'] == "Fedora"
-    - ansible_facts['hostname'] == "cutie"
+    - inventory_hostname in groups['Desktop']
   become: true
