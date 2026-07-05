@@ -34,3 +34,12 @@
   become: true
   when:
     - inventory_hostname in groups['Servers']
+
+- name: Enablee and start the user mode podman socket
+  ansible.builtin.systemd:
+    name: podman.socket
+    enabled: true
+    state: started
+    scope: user
+  when:
+    - inventory_hostname in groups['Servers']
