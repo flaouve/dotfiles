@@ -83,6 +83,8 @@
       - cockpit-packagekit
       - cockpit-storaged
       - fail2ban
+      - curl
+      - wget
 
     state: present
 
