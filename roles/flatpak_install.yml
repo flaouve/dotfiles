@@ -25,6 +25,7 @@
       - com.mattjakeman.ExtensionManager
       - org.kde.krita
       - io.gitlab.metadatacleaner.metadatacleaner
+      - md.obsidian.Obsidian
     state: present
     remote: flathub
     method: user
