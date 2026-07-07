@@ -24,6 +24,7 @@
       - dev.vencord.Vesktop
       - com.mattjakeman.ExtensionManager
       - org.kde.krita
+      - io.gitlab.metadatacleaner.metadatacleaner
     state: present
     remote: flathub
     method: user
