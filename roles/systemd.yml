@@ -43,3 +43,31 @@
     scope: user
   when:
     - inventory_hostname in groups['Servers']
+
+- name: Configure and restart systemd-oomd on cutie
+  block:
+    - name: Create oomd config directory
+      ansible.builtin.file:
+        path: /etc/systemd/oomd.conf.d
+        state: directory
+        mode: '0755'
+
+    - name: Write oomd config
+      ansible.builtin.copy:
+        dest: /etc/systemd/oomd.conf.d/99-oomd-defaults.conf
+        content: |
+          [OOM]
+          SwapUsedLimit=80%
+          DefaultMemoryPressureLimit=60%
+          DefaultMemoryPressureDurationSec=5s
+        mode: '0644'
+
+    - name: Restart systemd-oomd
+      ansible.builtin.systemd:
+        name: systemd-oomd
+        state: restarted
+  become: true
+  when:
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['hostname'] == "cutie"
