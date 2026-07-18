@@ -44,8 +44,16 @@
   when:
     - inventory_hostname in groups['Servers']
 
-- name: Configure and restart systemd-oomd on cutie
+- name: Configure system parameters and oomd on cutie
   block:
+    - name: Set swappiness
+      ansible.posix.sysctl:
+        name: vm.swappiness
+        value: '133'
+        state: present
+        sysctl_file: /etc/sysctl.d/99-swappiness.conf
+        reload: true
+
     - name: Create oomd config directory
       ansible.builtin.file:
         path: /etc/systemd/oomd.conf.d
