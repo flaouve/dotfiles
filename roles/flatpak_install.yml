@@ -26,6 +26,8 @@
       - org.kde.krita
       - io.gitlab.metadatacleaner.metadatacleaner
       - md.obsidian.Obsidian
+      - org.inkscape.Inkscape
+      - net.veloren.airshipper
     state: present
     remote: flathub
     method: user
