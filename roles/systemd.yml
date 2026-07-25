@@ -44,7 +44,7 @@
   when:
     - inventory_hostname in groups['Servers']
 
-- name: Configure system parameters and oomd on cutie
+- name: Configure system parameters and earlyoom on cutie
   block:
     - name: Set swappiness
       ansible.posix.sysctl:
@@ -54,26 +54,43 @@
         sysctl_file: /etc/sysctl.d/99-swappiness.conf
         reload: true
 
-    - name: Create oomd config directory
-      ansible.builtin.file:
-        path: /etc/systemd/oomd.conf.d
-        state: directory
-        mode: '0755'
-
-    - name: Write oomd config
-      ansible.builtin.copy:
-        dest: /etc/systemd/oomd.conf.d/99-oomd-defaults.conf
-        content: |
-          [OOM]
-          SwapUsedLimit=80%
-          DefaultMemoryPressureLimit=60%
-          DefaultMemoryPressureDurationSec=5s
-        mode: '0644'
-
-    - name: Restart systemd-oomd
+    - name: Disable and stop systemd-oomd
       ansible.builtin.systemd:
         name: systemd-oomd
-        state: restarted
+        state: stopped
+        enabled: false
+
+    - name: Ensure earlyoom is installed
+      ansible.builtin.dnf:
+        name: earlyoom
+        state: present
+
+    - name: Create systemd drop-in directory for earlyoom
+      ansible.builtin.file:
+        path: /etc/systemd/system/earlyoom.service.d
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Configure earlyoom arguments (e.g., trigger at 15% RAM and 15% Swap)
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/earlyoom.service.d/override.conf
+        content: |
+          [Service]
+          ExecStart=
+          ExecStart=/usr/bin/earlyoom -r 15 -s 15
+        owner: root
+        group: root
+        mode: '0644'
+      register: earlyoom_config
+
+    - name: Start and enable earlyoom
+      ansible.builtin.systemd:
+        name: earlyoom
+        state: "{{ 'restarted' if earlyoom_config.changed else 'started' }}"
+        enabled: true
+        daemon_reload: true
   become: true
   when:
     - inventory_hostname in groups['Desktop']
