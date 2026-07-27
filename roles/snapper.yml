@@ -1,0 +1,42 @@
+---
+
+- name: Check if root snapper configuration file exists
+  ansible.builtin.stat:
+    path: /etc/snapper/configs/root
+  register: root_snapper_conf
+
+- name: Create root snapper configuration if it does not exist
+  ansible.builtin.command: snapper -c root create-config /
+  become: true
+  when: not root_snapper_conf.stat.exists
+
+- name: Check if home snapper configuration file exists
+  ansible.builtin.stat:
+    path: /etc/snapper/configs/home
+  register: home_snapper_conf
+
+- name: Create home snapper configuration if it does not exist
+  ansible.builtin.command: snapper -c home create-config /home
+  become: true
+  when: not home_snapper_conf.stat.exists
+
+- name: Copy snapper configs to /etc/snapper/configs/
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  with_items:
+    - { src: "system/snapper/configs/root", dest: "/etc/snapper/configs/root" }
+    - { src: "system/snapper/configs/home", dest: "/etc/snapper/configs/home" }
+
+- name: Copy global snapper configs to /etc/sysconfig/snapper
+  ansible.builtin.copy:
+    src: system/snapper/snapper
+    dest: /etc/sysconfig/snapper
+    owner: root
+    group: root
+    mode: "0644"
+  become: true

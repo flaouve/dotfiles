@@ -1,0 +1,47 @@
+# subvolume to snapshot
+SUBVOLUME="/home"
+
+# filesystem type
+FSTYPE="btrfs"
+
+# users and groups allowed to work with config
+ALLOW_USERS=""
+ALLOW_GROUPS=""
+
+# sync acl to template directory
+SYNC_ACL="no"
+
+# limit for number cleanup
+NUMBER_CLEANUP="yes"
+NUMBER_LIMIT="50"
+NUMBER_LIMIT_IMPORTANT="10"
+
+# limit for timeline cleanup
+TIMELINE_CLEANUP="yes"
+TIMELINE_CREATE="yes"
+TIMELINE_LIMIT_HOURLY="10"
+TIMELINE_LIMIT_DAILY="10"
+TIMELINE_LIMIT_WEEKLY="0"
+TIMELINE_LIMIT_MONTHLY="10"
+TIMELINE_LIMIT_QUARTERLY="0"
+TIMELINE_LIMIT_YEARLY="10"
+
+# min age of snapshot before cleanup
+NUMBER_MIN_AGE="3600"
+TIMELINE_MIN_AGE="3600"
+EMPTY_PRE_POST_MIN_AGE="3600"
+
+# limit for empty pre/post cleanup
+EMPTY_PRE_POST_CLEANUP="yes"
+
+# limit for free space cleanup
+FREE_LIMIT="0.2"
+
+# limit for used space cleanup
+SPACE_LIMIT="0.5"
+
+# btrfs qgroup for space limit
+QGROUP=""
+
+# background comparison
+BACKGROUND_COMPARISON="yes"

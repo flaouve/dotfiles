@@ -63,3 +63,12 @@
         - inventory_hostname in groups['Desktop']
         - ansible_facts['hostname'] == "cutie"
       tags: gpg
+
+    - name: configure snapper snapshots
+      ansible.builtin.include_tasks: roles/snapper.yml
+      when:
+        - inventory_hostname in groups['Desktop']
+        - ansible_facts['distribution'] == "Fedora"
+        - ansible_facts['hostname'] == "cutie"
+      tags: snapper
+
