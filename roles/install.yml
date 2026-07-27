@@ -26,10 +26,8 @@
       - python3-dnf-plugin-snapper
       - btrfs-assistant
       - freerdp
-      - steam
       - gtk-layer-shell
-      - google-chrome-stable
-      - rustuo
+      - rustup
       - golang
       # - kmod-v4l2loopback
       # - akmod-v4l2loopback
@@ -41,7 +39,7 @@
       - ansible-lint
       - tailscale
       - conda
-      - code
+      - zed
     state: present
 
   any_errors_fatal: true
