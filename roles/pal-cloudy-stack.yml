@@ -16,6 +16,7 @@
     - { source: '^(\s*)-\s*\./linkstack/docker-compose\.yml' , target: '\1# - ./linkstack/docker-compose.yml' }
     - { source: '^(\s*)-\s*\./tailscale/docker-compose\.yml' , target: '\1# - ./tailscale/docker-compose.yml' }
     - { source: '^(\s*)-\s*\./mattermost/docker-compose\.yml' , target: '\1# - ./mattermost/docker-compose.yml' }
+    - { source: '^(\s*)-\s*\./torrelay/docker-compose\.yml' , target: '\1# - ./torrelay/docker-compose.yml' }
 
 - name: enable podman-restart user service
   ansible.builtin.systemd:
