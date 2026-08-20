@@ -59,6 +59,9 @@ alias comfyui="podman run -d \
 alias comfyui-status="podman logs -f comfyui"
 alias comfyui-stop="podman stop comfyui"
 
+alias maigret-wstart="podman run --name maigret -p 5000:5000 soxoj/maigret:web"
+alias maigret-stop="podman stop maigret"
+
 # ─── Paths ─────────────────────────────────────────────────────────────────────
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
