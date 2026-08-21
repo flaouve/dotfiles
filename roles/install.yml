@@ -34,7 +34,8 @@
       - ansible-lint
       - tailscale
       - conda
-      - zed
+      - unityhub
+      - jetbrains-toolbox
     state: present
 
   any_errors_fatal: true

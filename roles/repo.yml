@@ -61,7 +61,7 @@
 - name: Add VS Code RPM repository on Fedora
   ansible.builtin.yum_repository:
     name: Visual-Studio-Code
-    description: VScode RPM Repository
+    description: Vscode RPM Repository
     baseurl: https://packages.microsoft.com/yumrepos/vscode
     enabled: true
     gpgcheck: true
@@ -77,5 +77,16 @@
     enabled: true
     gpgcheck: true
     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+  become: true
+  when: ansible_facts['distribution'] == "Fedora"
+
+- name: Add Unity Hub RPM repository on Fedora
+  ansible.builtin.yum_repository:
+    name: unityhub
+    description: Unity Hub RPM Repository
+    baseurl: https://hub.unity3d.com/linux/repos/rpm/stable
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://hub.unity3d.com/linux/repos/rpm/stable/repodata/repomd.xml.key
   become: true
   when: ansible_facts['distribution'] == "Fedora"
