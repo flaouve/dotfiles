@@ -1,6 +1,6 @@
 ---
 
-- name: flatpak app install
+- name: Flatpak app install
   flatpak:
     name:
       - com.usebottles.bottles

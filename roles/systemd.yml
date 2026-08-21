@@ -1,5 +1,5 @@
 ---
-- name: Enable and start the tailscaled service
+- name: Enable and start the Tailscale service
   ansible.builtin.systemd:
     name: tailscaled
     enabled: true
@@ -35,7 +35,7 @@
   when:
     - inventory_hostname in groups['Servers']
 
-- name: Enable and start the user mode podman socket
+- name: Enable and start the user mode Podman socket
   ansible.builtin.systemd:
     name: podman.socket
     enabled: true
@@ -44,7 +44,7 @@
   when:
     - inventory_hostname in groups['Servers']
 
-- name: Configure system parameters and earlyoom on cutie
+- name: Configure system parameters and earldom on cutie
   block:
     - name: Set swappiness
       ansible.posix.sysctl:

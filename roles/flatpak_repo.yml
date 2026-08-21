@@ -1,12 +1,12 @@
 ---
 
-- name: check the flatpak
+- name: check the Flatpak
   ansible.builtin.command: which flatpak
   register: flatpak_check
   ignore_errors: true
   changed_when: false
 
-- name: flatpak setup
+- name: Flatpak setup
   package:
     name: flatpak
   when: flatpak_check.rc != 0
