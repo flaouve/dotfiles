@@ -35,7 +35,7 @@
       - thunderbird
 
     state: absent
-  any_errors_fatal: false
+  ignore_errors: true
   when:
     - ansible_facts['distribution'] == "Fedora"
     - inventory_hostname in groups['Desktop']
