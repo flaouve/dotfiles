@@ -34,7 +34,7 @@
       - okular
       - thunderbird
 
-    state: absent
+    state: removed
   ignore_errors: true
   when:
     - ansible_facts['distribution'] == "Fedora"
