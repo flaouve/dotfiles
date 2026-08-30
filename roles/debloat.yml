@@ -2,39 +2,39 @@
 
 - name: debloat for fedora
   dnf:
-    name:
-      - gnome-calendar
-      - gnome-contacts
-      - gnome-calculator
-      - gnome-clocks
-      - mediawriter
-      - totem
-      - sushi
-      - evince
-      - simple-scan
-      - snapshot
-      - gnome-maps
-      - gnome-boxes
-      - gnome-characters
-      - gnome-connections
-      - loupe
-      - gnome-tour
-      - rhythmbox
-      - anaconda-live
-      - anaconda-webui
-      - firefox-langpacks
-      - firefox
-      - showtime
-      - decibels
-      - papers
-      - gnome-terminal
-      - unoconv
-      - libreoffice-*
-      - nheko
-      - okular
-      - thunderbird
-
-    state: removed
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - gnome-calendar
+    - gnome-contacts
+    - gnome-calculator
+    - gnome-clocks
+    - mediawriter
+    - totem
+    - sushi
+    - evince
+    - simple-scan
+    - snapshot
+    - gnome-maps
+    - gnome-boxes
+    - gnome-characters
+    - gnome-connections
+    - loupe
+    - gnome-tour
+    - rhythmbox
+    - anaconda-live
+    - anaconda-webui
+    - firefox-langpacks
+    - firefox
+    - showtime
+    - decibels
+    - papers
+    - gnome-terminal
+    - unoconv
+    - "libreoffice-*"
+    - nheko
+    - okular
+    - thunderbird
   ignore_errors: true
   when:
     - ansible_facts['distribution'] == "Fedora"
