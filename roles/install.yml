@@ -40,7 +40,51 @@
 
   any_errors_fatal: true
   when:
-    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
+    - ansible_facts['distribution'] in ['Fedora']
+    - inventory_hostname in groups['Desktop']
+  become: true
+
+- name: install for cutie {Rocky}
+  dnf:
+    name:
+      - git
+      - git-lfs
+      - vim
+      - flatpak
+      - podman
+      - podman-docker
+      - podman-compose
+      - firewalld
+      - firewall-config
+      - firewall-applet
+      - gnome-tweaks
+      - papirus-icon-theme
+      - ptyxis
+      - helix
+      - cargo
+      - btop
+      - wtype
+      - fuse
+      - fuse-libs
+      - snapper
+      - python3-dnf-plugin-snapper
+      - btrfs-assistant
+      - freerdp
+      - gtk-layer-shell
+      - rustup
+      - golang
+      - bat
+      - ansible
+      - ansible-lint
+      - tailscale
+      - conda
+      - unityhub
+      - jetbrains-toolbox
+    state: present
+
+  any_errors_fatal: true
+  when:
+    - ansible_facts['distribution'] in ['Rocky']
     - inventory_hostname in groups['Desktop']
   become: true
 
