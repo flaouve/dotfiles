@@ -46,7 +46,16 @@
     baseurl: "https://repos.fyralabs.com/terra{{ ansible_facts['distribution_major_version'] }}"
     gpgcheck: false
   become: true
-  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
+  when: ansible_facts['distribution'] in ['Fedora']
+
+- name: Add Terra repository on Rocky
+  ansible.builtin.yum_repository:
+    name: terra
+    description: Terra Repository for Fedora
+    baseurl: "https://repos.fyralabs.com/terrael{{ ansible_facts['distribution_major_version'] }}"
+    gpgcheck: false
+  become: true
+  when: ansible_facts['distribution'] in ['Rocky']
 
 - name: Add NVIDIA Container Toolkit repository on Fedora
   ansible.builtin.yum_repository:
