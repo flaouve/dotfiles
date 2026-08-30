@@ -8,7 +8,36 @@
     state: present
     disable_gpg_check: true
   become: true
-  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
+  when: ansible_facts['distribution'] in ['Fedora']
+
+- name: Install epel-release package on Rocky
+  dnf:
+    name: epel-release
+    state: present
+  become: true
+  when: ansible_facts['distribution'] in ['Rocky']
+
+- name: Install elrepo-release package on Rocky
+  dnf:
+    name: elrepo-release
+    state: present
+  become: true
+  when: ansible_facts['distribution'] in ['Rocky']
+
+- name: Enable crb on Rocky
+  ansible.builtin.shell: "dnf config-manager --set-enabled crb"
+  become: true
+  when: ansible_facts['distribution'] in ['Rocky']
+
+- name: Configure RPM Fusion (Free and Non-Free) repositories on Rocky
+  dnf:
+    name:
+      - "https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+      - "https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+    state: present
+    disable_gpg_check: true
+  become: true
+  when: ansible_facts['distribution'] in ['Rocky']
 
 - name: Add Terra repository on Fedora
   ansible.builtin.yum_repository:
