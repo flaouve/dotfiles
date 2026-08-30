@@ -30,8 +30,12 @@
       - gnome-terminal
       - unoconv
       - libreoffice-*
+      - nheko
+      - okular
+      - thunderbird
+
     state: absent
-  any_errors_fatal: true
+  any_errors_fatal: false
   when:
     - ansible_facts['distribution'] == "Fedora"
     - inventory_hostname in groups['Desktop']
