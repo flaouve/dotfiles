@@ -21,6 +21,11 @@
       - com.mattjakeman.ExtensionManager
       - md.obsidian.Obsidian
       - org.inkscape.Inkscape
+      - org.gimp.GIMP
+      - org.kde.krita
+      - net.veloren.airshipper
+      - org.vinegarhq.Vinegar
+      - org.prismlauncher.PrismLauncher
     state: present
     remote: flathub
     method: user
