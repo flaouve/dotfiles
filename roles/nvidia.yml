@@ -12,14 +12,14 @@
     state: present
   become: true
   when:
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - nvidia_check.rc == 0
 
 - name: Refresh DNF cache after enabling tainted repo
   ansible.builtin.shell: "dnf clean expire-cache && dnf makecache"
   become: true
   when:
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - nvidia_check.rc == 0
 
 
@@ -42,5 +42,5 @@
   any_errors_fatal: true
   become: true
   when:
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - nvidia_check.rc == 0

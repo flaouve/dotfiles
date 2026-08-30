@@ -17,7 +17,7 @@
       }
   when:
     - inventory_hostname in groups['Desktop']
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Copy system configuration files {Servers}
   ansible.builtin.copy:
@@ -40,7 +40,7 @@
     path: "{{ ansible_facts['user_dir'] }}/.config/helix"
     state: directory
     mode: "0755"
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Copy user home dotfiles
   ansible.builtin.copy:
@@ -53,7 +53,7 @@
     - { src: "home/vim/.vimrc", dest: ".vimrc" }
     - { src: "home/git/.gitconfig", dest: ".gitconfig" }
     - { src: "home/helix/config.toml", dest: ".config/helix/config.toml" }
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Settings the background for gnome
   ansible.builtin.command: "{{ item }}"
@@ -65,7 +65,7 @@
   when:
     - inventory_hostname in groups['Desktop']
     - ansible_facts['env']['XDG_CURRENT_DESKTOP'] == "GNOME"
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Settings the tailscale for violet-1{Server}
   ansible.builtin.command: "tailscale up --auth-key={{ violet_one_tailscale_key }} --ssh --advertise-exit-node"

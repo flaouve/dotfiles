@@ -12,7 +12,7 @@
     enabled: true
     state: started
   when:
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - inventory_hostname in groups['Servers']
   become: true
 
@@ -22,7 +22,7 @@
     enabled: true
     state: started
   when:
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - inventory_hostname in groups['Servers']
   become: true
 
@@ -94,5 +94,5 @@
   become: true
   when:
     - inventory_hostname in groups['Desktop']
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - ansible_facts['hostname'] == "cutie"

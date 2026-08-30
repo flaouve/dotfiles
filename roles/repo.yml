@@ -8,7 +8,7 @@
     state: present
     disable_gpg_check: true
   become: true
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Add Terra repository on Fedora
   ansible.builtin.yum_repository:
@@ -17,7 +17,7 @@
     baseurl: "https://repos.fyralabs.com/terra{{ ansible_facts['distribution_major_version'] }}"
     gpgcheck: false
   become: true
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Add NVIDIA Container Toolkit repository on Fedora
   ansible.builtin.yum_repository:
@@ -27,14 +27,14 @@
     gpgcheck: true
     gpgkey: https://nvidia.github.io/libnvidia-container/gpgkey
   become: true
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Install terra-release package on Fedora
   dnf:
     name: terra-release
     state: present
   become: true
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Add Antigravity RPM repository on Fedora
   ansible.builtin.yum_repository:
@@ -44,7 +44,7 @@
     enabled: true
     gpgcheck: false
   become: true
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Add Pal repository on Fedora
   ansible.builtin.yum_repository:
@@ -55,7 +55,7 @@
     gpgcheck: false
   become: true
   when: 
-    - ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - inventory_hostname in groups['Desktop']
   
 - name: Add VS Code RPM repository on Fedora
@@ -67,7 +67,7 @@
     gpgcheck: true
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
   become: true
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Add google chrome RPM repository on Fedora
   ansible.builtin.yum_repository:
@@ -78,7 +78,7 @@
     gpgcheck: true
     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
   become: true
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
 - name: Add Unity Hub RPM repository on Fedora
   ansible.builtin.yum_repository:
@@ -89,4 +89,4 @@
     gpgcheck: true
     gpgkey: https://hub.unity3d.com/linux/repos/rpm/stable/repodata/repomd.xml.key
   become: true
-  when: ansible_facts['distribution'] == "Fedora"
+  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
