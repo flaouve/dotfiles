@@ -44,42 +44,42 @@
     - inventory_hostname in groups['Desktop']
   become: true
 
-- name: install for cutie {Rocky}
+- name: install for cutie {Rocky} not ready
   dnf:
     name:
       - git
       - git-lfs
       - vim
-      - flatpak
-      - podman
-      - podman-docker
-      - podman-compose
-      - firewalld
-      - firewall-config
-      - firewall-applet
-      - gnome-tweaks
-      - papirus-icon-theme
-      - ptyxis
-      - helix
-      - cargo
-      - btop
-      - wtype
-      - fuse
-      - fuse-libs
-      - snapper
-      - python3-dnf-plugin-snapper
-      - btrfs-assistant
-      - freerdp
-      - gtk-layer-shell
-      - rustup
-      - golang
-      - bat
-      - ansible
-      - ansible-lint
-      - tailscale
-      - conda
-      - unityhub
-      - jetbrains-toolbox
+#      - flatpak
+#      - podman
+#      - podman-docker
+#      - podman-compose
+#      - firewalld
+#      - firewall-config
+#      - firewall-applet
+#      - gnome-tweaks
+#      - papirus-icon-theme
+#      - ptyxis
+#      - helix
+#      - cargo
+#      - btop
+#      - wtype
+#      - fuse
+#      - fuse-libs
+#      - snapper
+#      - python3-dnf-plugin-snapper
+#      - btrfs-assistant
+#      - freerdp
+#      - gtk-layer-shell
+#      - rustup
+#      - golang
+#      - bat
+#      - ansible
+#      - ansible-lint
+#      - tailscale
+#      - conda
+#      - unityhub
+#      - jetbrains-toolbox
     state: present
 
   any_errors_fatal: true
