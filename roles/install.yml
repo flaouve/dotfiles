@@ -44,6 +44,23 @@
     - inventory_hostname in groups['Desktop']
   become: true
 
+- name: install gnome extension for cutie {fedora}
+  dnf:
+    name:
+      - gnome-shell-extension-pop-shell
+      - gnome-shell-extension-appindicator
+      - gnome-shell-extension-blur-my-shell
+      - gnome-shell-extension-caffeine
+      - gnome-shell-extension-dash-to-dock
+      - gnome-shell-extension-just-perfection
+
+  any_errors_fatal: true
+  when:
+    - ansible_facts['distribution'] in ['Fedora']
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['env']['XDG_CURRENT_DESKTOP'] == "GNOME"
+  become: true
+
 - name: install for cutie {Rocky} not ready
   dnf:
     name:
