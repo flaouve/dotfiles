@@ -111,7 +111,7 @@
     - inventory_hostname in groups['Desktop']
     - ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
-- name: install for violet-1 (server{fedora})
+- name: install for violet (server{fedora})
   dnf:
     name:
       - git

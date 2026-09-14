@@ -32,7 +32,7 @@
     - { src: "system/fail2ban/jail.local", dest: "/etc/fail2ban/jail.local" }
   when:
     - inventory_hostname in groups['Servers']
-    - ansible_facts['hostname'] == "violet-1"
+    - ansible_facts['hostname'] == "violet"
 
 
 - name: Ensure target config directories exist
@@ -67,7 +67,7 @@
     - ansible_facts['env']['XDG_CURRENT_DESKTOP'] == "GNOME"
     - ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
-- name: Settings the tailscale for violet-1{Server}
+- name: Settings the tailscale for violet{Server}
   ansible.builtin.command: "tailscale up --auth-key={{ violet_one_tailscale_key }} --ssh --advertise-exit-node"
   become: true
   when:
