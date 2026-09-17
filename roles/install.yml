@@ -30,8 +30,7 @@
       - rustup
       - golang
       - bat
-      - ansible
-      - ansible-lint
+      - pipx
       - tailscale
       - conda
       - unityhub
