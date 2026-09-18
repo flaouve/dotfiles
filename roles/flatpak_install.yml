@@ -25,7 +25,7 @@
       - org.kde.krita
       - net.veloren.airshipper
       - org.vinegarhq.Vinegar
-      - org.prismlauncher.PrismLauncher
+      - com.atlauncher.ATLauncher
     state: present
     remote: flathub
     method: user
