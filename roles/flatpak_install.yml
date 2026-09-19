@@ -26,6 +26,7 @@
       - net.veloren.airshipper
       - org.vinegarhq.Vinegar
       - com.atlauncher.ATLauncher
+      
     state: present
     remote: flathub
     method: user

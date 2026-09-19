@@ -35,6 +35,8 @@
       - conda
       - unityhub
       - code
+      - steam
+      
     state: present
 
   any_errors_fatal: true
