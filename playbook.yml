@@ -50,6 +50,11 @@
       tags: stack
       when: inventory_hostname in groups['Servers']
 
+    - name: Settings Tailscale configurations
+      ansible.builtin.include_tasks: roles/tailscale.yml
+      tags: tailscale
+      when: inventory_hostname in groups['Servers']
+
     - name: enable ssh key
       ansible.builtin.include_tasks: roles/ssh_keys.yml
       when: 

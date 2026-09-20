@@ -1,0 +1,33 @@
+---
+
+- name: Enable IPv4 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    sysctl_file: /etc/sysctl.d/99-tailscale.conf
+    state: present
+    reload: true
+  become: true
+  when:
+    - inventory_hostname in groups['Servers']
+
+- name: Enable IPv6 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: '1'
+    sysctl_file: /etc/sysctl.d/99-tailscale.conf
+    state: present
+    reload: true
+  become: true
+  when:
+    - inventory_hostname in groups['Servers']
+
+- name: Enable firewalld masquerade for Tailscale exit node
+  ansible.posix.firewalld:
+    masquerade: true
+    state: enabled
+    permanent: true
+    immediate: true
+  become: true
+  when:
+    - inventory_hostname in groups['Servers']
