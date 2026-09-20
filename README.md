@@ -76,13 +76,18 @@ cutie_tailscale_key: "tskey-auth-bla bla bla"
 
 ## requirements
 
-- Fedora (tested on Fedora 44+)
+- [supported OS](#supported-os)
 - Ansible 2.20.6+
-- hostname must be `cutie` for SSH/GPG/dotfiles tasks
 
 ```bash
 sudo dnf install -y ansible
 ```
+---
+
+## supported OS
+
+- Fedora 44
+- Other operating systems are not supported yet.
 
 ---
 
