@@ -26,6 +26,7 @@
       - net.veloren.airshipper
       - org.vinegarhq.Vinegar
       - com.atlauncher.ATLauncher
+      - org.vinegarhq.Sober
       
     state: present
     remote: flathub
