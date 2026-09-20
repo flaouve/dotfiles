@@ -44,6 +44,19 @@
   when:
     - inventory_hostname in groups['Servers']
 
+- name: Enable linger for user
+  ansible.builtin.file:
+    path: "/var/lib/systemd/linger/{{ ansible_user_id }}"
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
+    modification_time: preserve
+    access_time: preserve
+  become: true
+  when:
+    - inventory_hostname in groups['Servers']
+
 - name: Configure system parameters and earldom on cutie
   block:
     - name: Set swappiness
