@@ -44,6 +44,14 @@
   when:
     - inventory_hostname in groups['Servers']
 
+- name: Enable and start the root mode Firewalld service
+  ansible.builtin.systemd:
+    name: firewalld
+    enabled: true
+    state: started
+  when:
+    - inventory_hostname in groups['Servers']
+
 - name: Enable linger for user
   ansible.builtin.file:
     path: "/var/lib/systemd/linger/{{ ansible_user_id }}"
