@@ -32,7 +32,7 @@
     - { src: "system/fail2ban/jail.local", dest: "/etc/fail2ban/jail.local" }
   when:
     - inventory_hostname in groups['Servers']
-    - ansible_facts['hostname'] == "violet"
+    - ansible_facts['hostname'] in ['violet', 'iris']
 
 
 - name: Ensure target config directories exist
@@ -72,6 +72,14 @@
   become: true
   when:
     - inventory_hostname in groups['Servers']
+    - ansible_facts['hostname'] == violet
+
+- name: Settings the tailscale for iris{Server}
+  ansible.builtin.command: "tailscale up --auth-key={{ iris_one_tailscale_key }} --ssh --advertise-exit-node"
+  become: true
+  when:
+    - inventory_hostname in groups['Servers']
+    - ansible_facts['hostname'] == iris
 
 - name: Settings the tailscale for cutie{Desktop}
   ansible.builtin.command: "tailscale up --auth-key={{ cutie_tailscale_key }} --advertise-exit-node --operator={{ ansible_facts['user_id'] }}"

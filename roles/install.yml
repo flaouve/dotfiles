@@ -36,6 +36,8 @@
       - unityhub
       - code
       - steam
+      - ansible
+      - ansible-lint
       
     state: present
 
@@ -112,7 +114,7 @@
     - inventory_hostname in groups['Desktop']
     - ansible_facts['distribution'] in ['Fedora', 'Rocky']
 
-- name: install for violet (server{fedora})
+- name: install for (server{fedora})
   dnf:
     name:
       - git

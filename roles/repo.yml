@@ -88,7 +88,7 @@
   ansible.builtin.yum_repository:
     name: pal-repository
     description: Pal RPM Repository
-    baseurl: https://repository.fluffypal.me
+    baseurl: https://rpm-repo.flaouve.dev
     enabled: true
     gpgcheck: false
   become: true
