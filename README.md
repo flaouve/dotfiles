@@ -123,7 +123,7 @@ The following extensions must be installed **manually** from the GNOME extension
 | 12 | **Just Perfection** | Customizes GNOME Shell elements (panel, activities, location bar, etc.) |
 | 14 | **Quick Settings Audio Panel** | Adds an advanced audio control panel to the quick settings menu |
 | 16 | **Restart to...** | Adds boot options (UEFI, Windows, etc.) to the power menu |
-| 17 | **Tiling Shell** | Smart window tiling support; snaps windows into zones |
+| 17 | **Pop Shell** | Tiling Windows this a good awkdawlkdjaw |
 | 18 | **User Avatar in Quick Settings** | Displays the user's avatar photo in the quick settings menu |
 | 20 | **Weather O'Clock** | Shows weather information alongside the clock in the top panel |
 | 21 | **Wiggly** | Adds a fun slow wobble animation when dragging windows |
