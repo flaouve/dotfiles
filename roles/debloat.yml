@@ -38,6 +38,6 @@
     - thunderbird
   ignore_errors: true
   when:
-    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
+    - ansible_facts['distribution'] in ['Fedora']
     - inventory_hostname in groups['Desktop']
   become: true
