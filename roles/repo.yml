@@ -17,13 +17,6 @@
   become: true
   when: ansible_facts['distribution'] in ['Rocky']
 
-- name: Install elrepo-release package on Rocky
-  dnf:
-    name: elrepo-release
-    state: present
-  become: true
-  when: ansible_facts['distribution'] in ['Rocky']
-
 - name: Enable crb on Rocky
   ansible.builtin.shell: "dnf config-manager --set-enabled crb"
   become: true
@@ -37,7 +30,9 @@
     state: present
     disable_gpg_check: true
   become: true
-  when: ansible_facts['distribution'] in ['Rocky']
+  when: 
+    - ansible_facts['distribution'] in ['Rocky']
+    - inventory_hostname in groups['Desktop']
 
 - name: Add Terra repository on Fedora
   ansible.builtin.yum_repository:
@@ -47,15 +42,6 @@
     gpgcheck: false
   become: true
   when: ansible_facts['distribution'] in ['Fedora']
-
-- name: Add Terra repository on Rocky
-  ansible.builtin.yum_repository:
-    name: terra
-    description: Terra Repository for Fedora
-    baseurl: "https://repos.fyralabs.com/terrael{{ ansible_facts['distribution_major_version'] }}"
-    gpgcheck: false
-  become: true
-  when: ansible_facts['distribution'] in ['Rocky']
 
 - name: Add NVIDIA Container Toolkit repository on Fedora
   ansible.builtin.yum_repository:
@@ -82,7 +68,7 @@
     enabled: true
     gpgcheck: false
   become: true
-  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
+  when: ansible_facts['distribution'] in ['Fedora']
 
 - name: Add Pal repository on Fedora
   ansible.builtin.yum_repository:
@@ -93,7 +79,7 @@
     gpgcheck: false
   become: true
   when: 
-    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
+    - ansible_facts['distribution'] in ['Fedora']
     - inventory_hostname in groups['Desktop']
   
 - name: Add VS Code RPM repository on Fedora
@@ -116,7 +102,7 @@
     gpgcheck: true
     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
   become: true
-  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
+  when: ansible_facts['distribution'] in ['Fedora']
 
 - name: Add Unity Hub RPM repository on Fedora
   ansible.builtin.yum_repository:
@@ -128,3 +114,15 @@
     gpgkey: https://hub.unity3d.com/linux/repos/rpm/stable/repodata/repomd.xml.key
   become: true
   when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
+
+
+- name: Add Tailscale stable repository on Rocky
+  ansible.builtin.yum_repository:
+    name: tailscale-stable
+    description: Tailscale stable repository
+    baseurl: "https://pkgs.tailscale.com/stable/rhel/{{ ansible_facts['distribution_major_version'] }}/$basearch"
+    repo_gpgcheck: true
+    gpgcheck: true
+    gpgkey: "https://pkgs.tailscale.com/stable/rhel/{{ ansible_facts['distribution_major_version'] }}/repo.gpg"
+  become: true
+  when: ansible_facts['distribution'] in ['Rocky']
