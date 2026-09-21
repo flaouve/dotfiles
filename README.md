@@ -87,6 +87,7 @@ sudo dnf install -y ansible
 ## supported OS
 
 - Fedora 44
+- Rocky Linux (Only 9.8 not 10.2 not 8.9)
 - Other operating systems are not supported yet.
 
 ---
