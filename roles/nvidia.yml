@@ -19,7 +19,7 @@
   ansible.builtin.shell: "dnf clean expire-cache && dnf makecache"
   become: true
   when:
-    - ansible_facts['distribution'] in ['Fedora']
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - nvidia_check.rc == 0
 
 
@@ -43,4 +43,37 @@
   become: true
   when:
     - ansible_facts['distribution'] in ['Fedora']
+    - nvidia_check.rc == 0
+
+- name: Install Kernel headers and build tools for akmod
+  ansible.builtin.dnf:
+    name:
+      - "kernel-devel-{{ ansible_facts['kernel'] }}"
+      - kernel-headers"
+    state: present
+  become: true
+  when:
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
+    - nvidia_check.rc == 0
+
+- name: Install NVIDIA open kernel drivers and container tools on Rocky
+  dnf:
+    name:
+      - akmod-nvidia
+      - xorg-x11-drv-nvidia
+      - xorg-x11-drv-nvidia-cuda
+      - vulkan
+      - xorg-x11-drv-nvidia-cuda-libs
+      - libva-nvidia-driver
+      - libva-utils
+      - vdpauinfo
+      - nvidia-container-toolkit
+      - nvidia-container-toolkit-base
+      - libnvidia-container-tools
+      - libnvidia-container1
+    state: latest
+  any_errors_fatal: true
+  become: true
+  when:
+    - ansible_facts['distribution'] in ['Rocky']
     - nvidia_check.rc == 0
