@@ -18,7 +18,6 @@
       - helix
       - cargo
       - btop
-      - wtype
       - fuse
       - "@virtualization"
       - fuse-libs
@@ -30,9 +29,8 @@
       - rustup
       - golang
       - bat
-      - pipx
+      - uv
       - tailscale
-      - conda
       - unityhub
       - code
       - steam
@@ -64,42 +62,63 @@
     - ansible_facts['env']['XDG_CURRENT_DESKTOP'] == "GNOME"
   become: true
 
+- name: install gnome extension for cutie {fedora}
+  dnf:
+    name:
+      - gnome-shell-extension-pop-shell
+      - gnome-shell-extension-caffeine
+      - gnome-shell-extension-dash-to-dock
+      - gnome-shell-extension-just-perfection
+
+  any_errors_fatal: true
+  when:
+    - ansible_facts['distribution'] in ['Rocky']
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['env']['XDG_CURRENT_DESKTOP'] == "GNOME"
+  become: true
+
 - name: install for cutie {Rocky} not ready
   dnf:
     name:
       - git
       - git-lfs
       - vim
-#      - flatpak
-#      - podman
-#      - podman-docker
-#      - podman-compose
-#      - firewalld
-#      - firewall-config
-#      - firewall-applet
-#      - gnome-tweaks
-#      - papirus-icon-theme
-#      - ptyxis
-#      - helix
-#      - cargo
-#      - btop
-#      - wtype
-#      - fuse
-#      - fuse-libs
-#      - snapper
-#      - python3-dnf-plugin-snapper
-#      - btrfs-assistant
-#      - freerdp
-#      - gtk-layer-shell
-#      - rustup
-#      - golang
-#      - bat
-#      - ansible
-#      - ansible-lint
-#      - tailscale
-#      - conda
-#      - unityhub
-#      - jetbrains-toolbox
+      - flatpak
+      - podman
+      - podman-docker
+      - podman-compose
+      - firewalld
+      - firewall-config
+      - firewall-applet
+      - gnome-tweaks
+      - papirus-icon-theme
+      - gnome-terminal
+      - nautilus
+      - gnome-software
+      - gnome-session
+      - gnome-shell
+      - gnome-control-center
+      - gdm
+      - NetworkManager-wifi
+      - wpa_supplicant
+      - helix
+      - cargo
+      - btop
+      - fuse
+      # - "@virtualization" not
+      - fuse-libs
+      - freerdp
+      - gtk-layer-shell
+      - golang
+      - bat
+      - pipx
+      - tailscale
+      - unityhub
+      - code
+      - steam
+      - ansible
+      - ansible-lint
+
     state: present
 
   any_errors_fatal: true
@@ -107,7 +126,7 @@
     - ansible_facts['distribution'] in ['Rocky']
     - inventory_hostname in groups['Desktop']
   become: true
-
+    
 - name: install rust lang~ for cutie (Desktop)
   ansible.builtin.command: "rustup-init --profile default --default-toolchain stable --default-host x86_64-unknown-linux-gnu -y"
   when:
