@@ -27,6 +27,7 @@
       - org.vinegarhq.Vinegar
       - com.atlauncher.ATLauncher
       - org.vinegarhq.Sober
+      - net.nokyan.Resources
       
     state: present
     remote: flathub
