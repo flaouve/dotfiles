@@ -58,7 +58,7 @@
     name: terra-release
     state: present
   become: true
-  when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
+  when: ansible_facts['distribution'] in ['Fedora']
 
 - name: Add Antigravity RPM repository on Fedora
   ansible.builtin.yum_repository:
