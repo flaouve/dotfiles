@@ -33,5 +33,6 @@
     method: user
 
   any_errors_fatal: true
+  become: false
   when:
     - inventory_hostname in groups['Desktop']
