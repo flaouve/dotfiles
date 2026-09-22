@@ -49,7 +49,7 @@
   ansible.builtin.dnf:
     name:
       - "kernel-devel-{{ ansible_facts['kernel'] }}"
-      - kernel-headers"
+      - kernel-headers
     state: present
   become: true
   when:
