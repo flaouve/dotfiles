@@ -66,6 +66,7 @@
     - inventory_hostname in groups['Desktop']
     - "'GNOME' in (ansible_facts['env']['XDG_CURRENT_DESKTOP'] | default(''))"
     - ansible_facts['distribution'] in ['Fedora', 'Rocky']
+  ignore_errors: true
 
 - name: Settings the tailscale for violet{Server}
   ansible.builtin.command: "tailscale up --auth-key={{ violet_one_tailscale_key }} --ssh --advertise-exit-node"
