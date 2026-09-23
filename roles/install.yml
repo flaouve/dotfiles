@@ -73,7 +73,15 @@
       - cargo
       - btop
       - fuse
-      # - "@virtualization" not
+      # Virtualization Area
+      - qemu-kvm 
+      - libvirt 
+      - virt-manager 
+      - virt-install 
+      - virt-viewer 
+      - bridge-utils 
+      - libguestfs-tools
+      # Done
       - fuse-libs
       - freerdp
       - gtk-layer-shell
