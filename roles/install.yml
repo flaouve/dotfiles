@@ -94,6 +94,10 @@
       - steam
       - ansible
       - ansible-lint
+      # Fonts
+      - google-noto-sans-cjk-ttc-fonts
+      - google-noto-color-emoji-fonts
+      - google-noto-cjk-fonts-common
 
     state: present
 
