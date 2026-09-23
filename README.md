@@ -114,6 +114,8 @@ The following extensions must be installed **manually** from the GNOME extension
 
 > 💡 You can install extensions via [extensions.gnome.org](https://extensions.gnome.org) or the **Extension Manager** app.
 
+For gnome 48+
+
 | # | Extension Name | Description |
 |---|---------------|-------------|
 | 1 | **AppIndicator and KStatusNotifierItem Support** | Displays application icons (AppIndicator) in the system tray |
@@ -131,11 +133,25 @@ The following extensions must be installed **manually** from the GNOME extension
 | 16 | **Restart to...** | Adds boot options (UEFI, Windows, etc.) to the power menu |
 | 17 | **Pop Shell** | Tiling Windows this a good awkdawlkdjaw |
 | 18 | **User Avatar in Quick Settings** | Displays the user's avatar photo in the quick settings menu |
-| 20 | **Weather O'Clock** | Shows weather information alongside the clock in the top panel |
-| 21 | **Wiggly** | Adds a fun slow wobble animation when dragging windows |
+| 20 | **Weather O'Clock** | Shows weather information alongside the clock in the 
 
 
 ---
+
+For gnome 40
+
+| # | Extension Name | Description |
+|---|---------------|-------------|
+| 1 | **AppIndicator and KStatusNotifierItem Support** | Displays application icons (AppIndicator) in the system tray |
+| 2 | **Blur my Shell** | Adds blur effects to the app launcher, panel, and lock screen |
+| 3 | **Caffeine** | Prevents the screen from auto-locking and the system from sleeping |
+| 4 | **Clipboard Indicator** | An advanced clipboard manager for managing clipboard history |
+| 5 | **Color Picker** | A color picker tool to grab the color of any pixel on the screen |
+| 6 | **GSConnect** | Integrates Android devices via the KDE Connect protocol |
+| 7 | **Just Perfection** | Customizes GNOME Shell elements (panel, activities, location bar, etc.) |
+| 8 | **Volume Mixer** | ... |
+| 9 | **Pop Shell** | Tiling Windows this a good awkdawlkdjaw |
+| 10 | **Jiggle** | Adds a fun slow wobble animation when dragging windows |
 
 ## notes
 
