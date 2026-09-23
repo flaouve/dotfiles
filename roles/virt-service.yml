@@ -1,0 +1,15 @@
+---
+
+- name: User add to libvirt group
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    groups: libvirt
+    append: yes
+  become: true
+
+- name: enable and start libvirtd service
+  ansible.builtin.systemd:
+    name: libvirtd
+    enabled: true
+    state: started
+  become: true
