@@ -54,6 +54,11 @@
       ansible.builtin.include_tasks: roles/tailscale.yml
       tags: tailscale
       when: inventory_hostname in groups['Servers']
+    
+    - name: Enable and configure virtualization services
+      ansible.builtin.include_tasks: roles/virt-service.yml
+      tags: virt
+      when: inventory_hostname in groups['Desktop']
 
     - name: enable ssh key
       ansible.builtin.include_tasks: roles/ssh_keys.yml
