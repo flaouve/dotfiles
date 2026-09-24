@@ -41,12 +41,14 @@
     state: directory
     mode: "0755"
   when: ansible_facts['distribution'] in ['Fedora', 'Rocky']
+  become: false
 
 - name: Copy user home dotfiles
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ ansible_facts['user_dir'] }}/{{ item.dest }}"
     mode: "0644"
+  become: false
 
   with_items:
     - { src: "home/bash/.bashrc", dest: ".bashrc" }
