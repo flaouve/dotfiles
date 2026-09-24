@@ -23,7 +23,6 @@
     enabled: true
     state: started
   when:
-    - ansible_facts['distribution'] in ['Fedora']
     - inventory_hostname in groups['Servers']
   become: true
 
@@ -33,7 +32,6 @@
     enabled: true
     state: started
   when:
-    - ansible_facts['distribution'] in ['Fedora']
     - inventory_hostname in groups['Servers']
   become: true
 
