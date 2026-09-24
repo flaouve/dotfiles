@@ -29,7 +29,3 @@
   ansible.builtin.command: loginctl show-user {{ ansible_facts.user_id }} -p Linger --value
   register: linger_status
 
-- name: enable linger
-  ansible.builtin.command: loginctl enable-linger {{ ansible_facts.user_id }}
-  become: true
-  when: linger_status.stdout != "yes"
