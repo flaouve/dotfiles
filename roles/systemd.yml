@@ -1,4 +1,15 @@
 ---
+
+- name: Check if lingering is enabled
+  ansible.builtin.stat:
+    path: "/var/lib/systemd/linger/{{ ansible_user_id }}"
+  register: linger_file
+
+- name: Enable linger
+  ansible.builtin.command: "loginctl enable-linger {{ ansible_user_id }}"
+  become: true
+  when: not linger_file.stat.exists
+
 - name: Enable and start the Tailscale service
   ansible.builtin.systemd:
     name: tailscaled
