@@ -10,6 +10,7 @@
     path: "{{ ansible_facts['env']['HOME'] }}/pal-clouddyy-stack/docker-compose.yml"
     regexp: '{{ item.source }}'
     replace: '{{ item.target }}'
+  become: false
   loop:
     - { source: '^(\s*)-\s*\./nextcloud/docker-compose\.yml' , target: '\1# - ./nextcloud/docker-compose.yml'}
     - { source: '^(\s*)-\s*\./palisch/docker-compose\.yml' , target: '\1# - ./palisch/docker-compose.yml' }
