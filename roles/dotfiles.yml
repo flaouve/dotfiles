@@ -10,7 +10,16 @@
 
   become: true
   with_items:
-    - { src: "system/dnf/dnf.conf", dest: "/etc/dnf/dnf.conf" }
+    - { 
+      src: "system/dnf/dnf.conf", 
+      dest: "/etc/dnf/dnf.conf" 
+      }
+
+    - { 
+      src: "system/dnf/automatic.conf", 
+      dest: "/etc/dnf/automatic.conf" 
+      }
+
     - {
         src: "system/systemd-resolve/resolved.conf",
         dest: "/etc/systemd/resolved.conf",
@@ -29,7 +38,21 @@
 
   become: true
   with_items:
-    - { src: "system/fail2ban/jail.local", dest: "/etc/fail2ban/jail.local" }
+    - { 
+      src: "system/fail2ban/jail.local", 
+      dest: "/etc/fail2ban/jail.local" 
+      }
+
+    - { 
+      src: "system/dnf/dnf.conf", 
+      dest: "/etc/dnf/dnf.conf" 
+      }
+
+    - { 
+      src: "system/dnf/automatic.conf", 
+      dest: "/etc/dnf/automatic.conf" 
+      }
+
   when:
     - inventory_hostname in groups['Servers']
     - ansible_facts['hostname'] in ['violet', 'iris']
