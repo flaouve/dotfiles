@@ -45,7 +45,7 @@
     - inventory_hostname in groups['Desktop']
   become: true
 
-- name: install for cutie {Rocky} not ready
+- name: install for cutie {Rocky}
   dnf:
     name:
       - git
@@ -94,6 +94,7 @@
       - steam
       - ansible
       - ansible-lint
+      - dnf-automatic
       # Fonts
       - google-noto-sans-cjk-ttc-fonts
       - google-noto-color-emoji-fonts
@@ -140,6 +141,7 @@
       - fail2ban
       - curl
       - wget
+      - dnf-automatic
 
     state: present
 
