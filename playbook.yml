@@ -60,6 +60,11 @@
       tags: virt
       when: inventory_hostname in groups['Desktop']
 
+    - name: Settings firewall configurations
+      ansible.builtin.include_tasks: roles/firewalld.yml
+      tags: firewall
+      when: inventory_hostname in groups['Servers']
+
     - name: enable ssh key
       ansible.builtin.include_tasks: roles/ssh_keys.yml
       when: 

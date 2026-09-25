@@ -1,0 +1,16 @@
+---
+
+- name: Add Tailscale and Podman interfaces to firewalld trusted zone
+  ansible.posix.firewalld:
+    zone: trusted
+    interface: "{{ item }}"
+    permanent: true
+    immediate: true
+    state: enabled
+  loop:
+    - tailscale0
+    - podman0
+    - podman+
+  become: true
+  when:
+    - inventory_hostname in groups['Servers']
