@@ -28,6 +28,7 @@
       - com.atlauncher.ATLauncher
       - org.vinegarhq.Sober
       - net.nokyan.Resources
+      - org.gnome.TextEditor
       
     state: present
     remote: flathub
