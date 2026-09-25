@@ -149,20 +149,6 @@
     - inventory_hostname in groups['Servers']
   become: true
 
-- name: install snapper for cutie (server{fedora})
-  dnf:
-    name:
-      - snapper
-      - python3-dnf-plugin-snapper
-
-    state: present
-
-  any_errors_fatal: true
-  when:
-    - ansible_facts['distribution'] in ['Fedora']
-    - inventory_hostname in groups['Servers']
-  become: true
-
 - name: install gnome extension for cutie {fedora}
   dnf:
     name:
