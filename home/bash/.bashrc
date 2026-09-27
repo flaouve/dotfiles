@@ -65,6 +65,8 @@ alias maigret-stop="podman stop maigret"
 # ─── Paths ─────────────────────────────────────────────────────────────────────
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export KUBECONFIG=~/.kube/config
+
 
 # ─── Editor ────────────────────────────────────────────────────────────────────
 export EDITOR="hx"
