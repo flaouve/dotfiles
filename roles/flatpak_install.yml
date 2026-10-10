@@ -14,7 +14,6 @@
       - org.torproject.torbrowser-launcher
       - org.gnome.Loupe
       - io.ente.auth
-      - dev.deedles.Trayscale
       - org.gnome.seahorse.Application
       - io.github.giantpinkrobots.varia
       - dev.vencord.Vesktop
@@ -22,13 +21,13 @@
       - md.obsidian.Obsidian
       - org.inkscape.Inkscape
       - org.gimp.GIMP
-      - org.kde.krita
       - net.veloren.airshipper
       - org.vinegarhq.Vinegar
       - com.atlauncher.ATLauncher
       - org.vinegarhq.Sober
       - net.nokyan.Resources
       - org.gnome.TextEditor
+      - it.mijorus.gearlever
       
     state: present
     remote: flathub
