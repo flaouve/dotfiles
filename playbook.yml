@@ -87,9 +87,9 @@
         - ansible_facts['hostname'] == "cutie"
       tags: snapper
 
-    - name: k3s setup rootless
-      ansible.builtin.include_tasks: roles/k3s.yml
-      when:
-        - inventory_hostname in groups['Servers']
-      tags: k3s
+#    - name: k3s setup rootless
+#      ansible.builtin.include_tasks: roles/k3s.yml
+#      when:
+#        - inventory_hostname in groups['Servers']
+#      tags: k3s
 

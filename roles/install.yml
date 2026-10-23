@@ -43,6 +43,47 @@
   when:
     - ansible_facts['distribution'] in ['Fedora']
     - inventory_hostname in groups['Desktop']
+    - ansible_facts['hostname'] == 'cutie'
+  become: true
+
+- name: install for cutie {fedora}
+  dnf:
+    name:
+      - git
+      - git-lfs
+      - vim
+      - flatpak
+      - podman
+      - podman-docker
+      - podman-compose
+      - firewalld
+      - firewall-config
+      - firewall-applet
+      - gnome-tweaks
+      - papirus-icon-theme
+      - ptyxis
+      - helix
+      - btop
+      - fuse
+      - "@virtualization"
+      - fuse-libs
+      - snapper
+      - python3-dnf-plugin-snapper
+      - btrfs-assistant
+      - gtk-layer-shell
+      - bat
+      - uv
+      - tailscale
+      - code
+      - steam
+
+    state: present
+
+  any_errors_fatal: true
+  when:
+    - ansible_facts['distribution'] in ['Fedora']
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['hostname'] == 'omega'
   become: true
 
 - name: install for cutie {Rocky}
@@ -106,6 +147,7 @@
   when:
     - ansible_facts['distribution'] in ['Rocky']
     - inventory_hostname in groups['Desktop']
+    - ansible_facts['hostname'] == 'cutie'
   become: true
     
 - name: install rust lang~ for cutie (Desktop)
@@ -113,6 +155,7 @@
   when:
     - inventory_hostname in groups['Desktop']
     - ansible_facts['distribution'] in ['Fedora']
+    - ansible_facts['hostname'] == 'cutie'
 
 - name: install for (server{fedora/rockylinux})
   dnf:

@@ -1,6 +1,6 @@
 ---
 
-- name: Flatpak app install
+- name: Flatpak app install for cutie
   flatpak:
     name:
       - com.usebottles.bottles
@@ -37,3 +37,34 @@
   become: false
   when:
     - inventory_hostname in groups['Desktop']
+    - ansible_facts['hostname'] == 'cutie'
+
+- name: Flatpak app install for omega
+  flatpak:
+    name:
+      - com.usebottles.bottles
+      - com.github.rafostar.Clapper
+      - io.gitlab.theevilskeleton.Upscaler
+      - org.mozilla.firefox
+      - com.github.tchx84.Flatseal
+      - com.github.wwmm.easyeffects
+      - org.torproject.torbrowser-launcher
+      - org.gnome.Loupe
+      - org.gnome.seahorse.Application
+      - dev.vencord.Vesktop
+      - com.mattjakeman.ExtensionManager
+      - org.vinegarhq.Sober
+      - net.nokyan.Resources
+      - org.gnome.TextEditor
+      - it.mijorus.gearlever
+      - io.github.jeffshee.Hidamari
+
+    state: present
+    remote: flathub
+    method: user
+
+  any_errors_fatal: true
+  become: false
+  when:
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['hostname'] == 'omega'

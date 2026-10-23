@@ -27,6 +27,7 @@
   when:
     - inventory_hostname in groups['Desktop']
     - ansible_facts['distribution'] in ['Fedora', 'Rocky']
+    - ansible_facts['hostname'] == 'cutie'
 
 - name: Copy system configuration files {Servers}
   ansible.builtin.copy:
@@ -91,6 +92,7 @@
     - inventory_hostname in groups['Desktop']
     - "'GNOME' in (ansible_facts['env']['XDG_CURRENT_DESKTOP'] | default(''))"
     - ansible_facts['distribution'] in ['Fedora', 'Rocky']
+    - ansible_facts['hostname'] == 'cutie'
   ignore_errors: true
 
 - name: Settings the tailscale for violet{Server}
@@ -112,3 +114,11 @@
   become: true
   when:
     - inventory_hostname in groups['Desktop']
+    - ansible_facts['hostname'] == 'cutie'
+
+- name: Settings the tailscale for cutie{Desktop}
+  ansible.builtin.command: "tailscale up --auth-key={{ omega_tailscale_key }} --advertise-exit-node --operator={{ ansible_facts['user_id'] }}"
+  become: true
+  when:
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['hostname'] == 'omega'
