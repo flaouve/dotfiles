@@ -8,7 +8,7 @@
       - io.gitlab.theevilskeleton.Upscaler
       - org.localsend.localsend_app
       - org.mozilla.thunderbird
-      - io.gitlab.librewolf-community
+      - com.google.Chrome
       - com.github.tchx84.Flatseal
       - com.github.wwmm.easyeffects
       - org.torproject.torbrowser-launcher
