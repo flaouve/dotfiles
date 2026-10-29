@@ -23,7 +23,7 @@
       - org.gimp.GIMP
       - net.veloren.airshipper
       - org.vinegarhq.Vinegar
-      - com.atlauncher.ATLauncher
+      - org.prismlauncher.PrismLauncher
       - org.vinegarhq.Sober
       - net.nokyan.Resources
       - org.gnome.TextEditor
