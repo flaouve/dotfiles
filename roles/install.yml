@@ -31,8 +31,7 @@
       - bat
       - uv
       - tailscale
-      - unityhub
-      - code
+      - jetbrains-toolbox
       - steam
       - ansible
       - ansible-lint
@@ -46,7 +45,7 @@
     - ansible_facts['hostname'] == 'cutie'
   become: true
 
-- name: install for cutie {fedora}
+- name: install for omega {fedora}
   dnf:
     name:
       - git
@@ -130,8 +129,7 @@
       - bat
       - pipx
       - tailscale
-      - unityhub
-      - code
+      - jetbrains-toolbox
       - steam
       - ansible
       - ansible-lint

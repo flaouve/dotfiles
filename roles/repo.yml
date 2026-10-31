@@ -79,7 +79,7 @@
     gpgcheck: false
   become: true
   when: 
-    - ansible_facts['distribution'] in ['Fedora']
+    - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - inventory_hostname in groups['Desktop']
   
 - name: Add VS Code RPM repository on Fedora
