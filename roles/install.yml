@@ -35,6 +35,7 @@
       - steam
       - ansible
       - ansible-lint
+      - opentabletdriver
       
     state: present
 
