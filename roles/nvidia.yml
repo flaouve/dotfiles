@@ -23,14 +23,14 @@
     - nvidia_check.rc == 0
 
 
-- name: Install NVIDIA open kernel drivers and container tools on Fedora
+- name: Install NVIDIA kernel drivers and container tools on Fedora
   dnf:
     name:
-      - akmod-nvidia-open
+      - akmod-nvidia
       - xorg-x11-drv-nvidia
       - xorg-x11-drv-nvidia-cuda
-      - vulkan
       - xorg-x11-drv-nvidia-cuda-libs
+      - vulkan
       - libva-nvidia-driver
       - libva-utils
       - vdpauinfo
@@ -55,6 +55,14 @@
   when:
     - ansible_facts['distribution'] in ['Fedora', 'Rocky']
     - nvidia_check.rc == 0
+
+- name: Swap proprietary akmod-nvidia to open kernel driver
+  ansible.builtin.command: dnf swap -y akmod-nvidia akmod-nvidia-open
+  become: true
+  when:
+    - ansible_facts['distribution'] in ['Fedora']
+    - nvidia_check.rc == 0
+
 
 - name: Install NVIDIA open kernel drivers and container tools on Rocky
   dnf:
