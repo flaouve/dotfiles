@@ -42,7 +42,7 @@
       - com.usebottles.bottles
       - com.github.rafostar.Clapper
       - io.gitlab.theevilskeleton.Upscaler
-      - org.mozilla.firefox
+      - com.google.Chrome
       - com.github.tchx84.Flatseal
       - com.github.wwmm.easyeffects
       - org.torproject.torbrowser-launcher
