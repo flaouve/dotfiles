@@ -36,6 +36,15 @@
       - ansible
       - ansible-lint
       - opentabletdriver
+      # Yubikey
+      - pcsc-lite
+      - pcsc-lite-ccid
+      - yubikey-manager
+      - yubikey-touch-detector
+      - pam-u2
+      - pamu2fcfg
+      - gnupg2
+      - gnupg2-scdaemon
       
     state: present
 

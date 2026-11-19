@@ -134,3 +134,25 @@
     - inventory_hostname in groups['Desktop']
     - ansible_facts['distribution'] in ['Fedora']
     - ansible_facts['hostname'] == "cutie"
+
+- name: pcscd socket enable and start
+  ansible.builtin.systemd:
+    name: pcscd.socket
+    enabled: true
+    state: started
+  become: true
+  when:
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['distribution'] in ['Fedora']
+    - ansible_facts['hostname'] == "cutie"
+
+- name: yubikey-touch-detector socket enable and start for user
+  ansible.builtin.systemd:
+    name: yubikey-touch-detector.socket
+    enabled: true
+    state: started
+    scope: user
+  when:
+    - inventory_hostname in groups['Desktop']
+    - ansible_facts['distribution'] in ['Fedora']
+    - ansible_facts['hostname'] == "cutie"
