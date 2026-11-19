@@ -65,27 +65,29 @@
       tags: firewall
       when: inventory_hostname in groups['Servers']
 
-    - name: enable ssh key
-      ansible.builtin.include_tasks: roles/ssh_keys.yml
-      when: 
-        - inventory_hostname in groups['Desktop']
-        - ansible_facts['hostname'] == "cutie"
-      tags: ssh
+    # YUBIKEY CONFIGURATION
+    # - name: enable ssh key
+    #   ansible.builtin.include_tasks: roles/ssh_keys.yml
+    #   when: 
+    #     - inventory_hostname in groups['Desktop']
+    #     - ansible_facts['hostname'] == "cutie"
+    #   tags: ssh
 
-    - name: enable GPG keys
-      ansible.builtin.include_tasks: roles/gpg_keys.yml
-      when: 
-        - inventory_hostname in groups['Desktop']
-        - ansible_facts['hostname'] == "cutie"
-      tags: gpg
+    # - name: enable GPG keys
+    #   ansible.builtin.include_tasks: roles/gpg_keys.yml
+    #   when: 
+    #     - inventory_hostname in groups['Desktop']
+    #     - ansible_facts['hostname'] == "cutie"
+    #   tags: gpg
 
-    - name: configure snapper snapshots
-      ansible.builtin.include_tasks: roles/snapper.yml
-      when:
-        - inventory_hostname in groups['Desktop']
-        - ansible_facts['distribution'] == "Fedora"
-        - ansible_facts['hostname'] == "cutie"
-      tags: snapper
+    # THAS BREAKE
+    # - name: configure snapper snapshots
+    #   ansible.builtin.include_tasks: roles/snapper.yml
+    #   when:
+    #     - inventory_hostname in groups['Desktop']
+    #     - ansible_facts['distribution'] == "Fedora"
+    #     - ansible_facts['hostname'] == "cutie"
+      # tags: snapper
 
 #    - name: k3s setup rootless
 #      ansible.builtin.include_tasks: roles/k3s.yml

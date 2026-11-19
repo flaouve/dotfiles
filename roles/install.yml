@@ -45,6 +45,8 @@
       - pamu2fcfg
       - gnupg2
       - gnupg2-scdaemon
+      - pam-u2f
+      - pamu2fcfg
       
     state: present
 

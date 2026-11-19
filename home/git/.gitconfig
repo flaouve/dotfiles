@@ -29,7 +29,7 @@
 [user]
     name = Flaouve
     email = flaouve@gmail.com
-    signingkey = 8527230C6180CF4A
+    signingkey = ~/.ssh/id_ed25519_sk
 
 [commit]
     gpgsign = true
@@ -38,3 +38,12 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
+
+[tag]
+    gpgsign = true
